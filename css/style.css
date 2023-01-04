@@ -92,6 +92,7 @@ h1 {
 
 #c_decl {
     color: red;
+    font-weight: bolder;
 }
 
 #token {
