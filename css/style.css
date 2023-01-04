@@ -25,7 +25,7 @@ h1 {
 
 
 #header {
-    background: linear-gradient(-45deg, #8c55e5, #5f1669, #ca44db, #663dd4);
+    background: linear-gradient(-45deg, #3556d8, #832099, #4a23ac, #d21ea2);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     top: 0;
@@ -40,7 +40,7 @@ h1 {
 
 .topnav {
     overflow: hidden;
-    background: linear-gradient(-45deg, #43058b, #832099, #2f0c74, #d21ea2);
+    background: linear-gradient(-45deg, #3556d8, #832099, #4a23ac, #d21ea2);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     margin-top: 35px;
@@ -83,6 +83,7 @@ h1 {
 
 .heading_1 {
     margin-right: 10px;
+    color: white;
 }
 
 .container2 {
@@ -107,7 +108,7 @@ h1 {
 
 .bubble {
     border-radius: 100px;
-    background-color: bisque;
+    background-color: rgb(183, 169, 152);
     color: #fff;
     line-height: 70px;
     text-align: center;
@@ -137,7 +138,8 @@ h1 {
 
 .bubble4 {
     border-radius: 100px;
-    background-color: bisque;
+    background-color: rgb(183, 169, 152);
+    ;
     color: #fff;
     line-height: 70px;
     text-align: center;
