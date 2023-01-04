@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="lt">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script defer type="text/javascript" src="main.js"></script>
+        <title>Įrodymas</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1>Metamath kalba</h1>
+        </div>
+        <div class="topnav">
+            <a href="index.html">Deklaracijos</a>
+            <a href="axioms.html">Aksiomos</a>
+            <a class="active" href="prove.html">Įrodymas</a>
+        </div>
+        <div id="container">
+            <div class="box">
+                <select id="prove" onChange="update()">
+                    <option>Prove</option>
+                    <option>( a -> a )</option>
+                    <option>( ( a -> a ) -> ( a -> a ) )</option>
+                </select>
+            </div>
+        </div>
+        <div id="proveDive">
+            <div id="myDiv">
+                <ul id="myUL">
+                </ul>
+            </div>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+            <div id="chart"></div>
+        </div>
+    </body>
+</html>

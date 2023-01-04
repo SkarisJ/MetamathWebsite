@@ -1,0 +1,38 @@
+The log file "test.log" was opened 3-Dec-2022 12:56 PM.
+MM> show proof th1/lemmon/all
+ 1 termasT       $f termas t
+ 2 termas0       $a termas 0
+ 3 1,2 termasTPlusR  $a termas ( t + 0 )
+ 4 termasT       $f termas t
+ 5 3,4 geraiSukonstruotaTEqualR  $a geraiSukonstruotaFormule ( t + 0 ) = t
+ 6 termasT       $f termas t
+ 7 termasT       $f termas t
+ 8 6,7 geraiSukonstruotaTEqualR  $a geraiSukonstruotaFormule t = t
+ 9 termasT       $f termas t
+10 9 aksioma2    $a |- ( t + 0 ) = t
+11 termasT       $f termas t
+12 termas0       $a termas 0
+13 11,12 termasTPlusR  $a termas ( t + 0 )
+14 termasT       $f termas t
+15 13,14 geraiSukonstruotaTEqualR  $a geraiSukonstruotaFormule ( t + 0 ) = t
+16 termasT       $f termas t
+17 termas0       $a termas 0
+18 16,17 termasTPlusR  $a termas ( t + 0 )
+19 termasT       $f termas t
+20 18,19 geraiSukonstruotaTEqualR  $a geraiSukonstruotaFormule ( t + 0 ) = t
+21 termasT       $f termas t
+22 termasT       $f termas t
+23 21,22 geraiSukonstruotaTEqualR  $a geraiSukonstruotaFormule t = t
+24 20,23 geraiSukonstruotaPImplQ  $a geraiSukonstruotaFormule ( ( t + 0 ) = t -> t = t )
+25 termasT       $f termas t
+26 25 aksioma2   $a |- ( t + 0 ) = t
+27 termasT       $f termas t
+28 termas0       $a termas 0
+29 27,28 termasTPlusR  $a termas ( t + 0 )
+30 termasT       $f termas t
+31 termasT       $f termas t
+32 29,30,31 aksioma1  $a |- ( ( t + 0 ) = t -> ( ( t + 0 ) = t -> t = t ) )
+33 15,24,26,32 modusPonens  $a |- ( ( t + 0 ) = t -> t = t )
+34 5,8,10,33 modusPonens  $a |- t = t
+MM> close log
+The log file "test.log" was closed 3-Dec-2022 12:56 PM.
