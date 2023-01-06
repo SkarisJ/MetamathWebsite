@@ -84,10 +84,16 @@ h1 {
 .heading_1 {
     margin-right: 10px;
     color: white;
+    text-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294;
 }
 
 .container2 {
     margin: 2px;
+}
+
+a {
+    color: white;
+    text-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294;
 }
 
 #c_decl {
