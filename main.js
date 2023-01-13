@@ -31,6 +31,7 @@ function readTextFile (file) {
                 .replace ('wi', '')
                 .replace ('m', '')
                 .replace ('a2', '')
+                .replace ('a1', '')
                 .trim ()
             );
           } else {
