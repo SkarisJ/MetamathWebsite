@@ -146,7 +146,6 @@ a {
 .bubble4 {
     border-radius: 100px;
     background-color: rgb(183, 169, 152);
-    ;
     color: #fff;
     line-height: 70px;
     text-align: center;
@@ -245,4 +244,18 @@ ul, #myUL {
 
 .box select option {
     padding: 30px;
+}
+
+@media (max-width: 1500px) {
+    #proveDive {
+        margin-top: 170px;
+        display: block;
+    }
+
+    #chart {
+        width: 110%;
+        height: 65%;
+        position: relative;
+        left: 0;
+    }
 }
