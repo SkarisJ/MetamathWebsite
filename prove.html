@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script defer type="text/javascript" src="main.js"></script>
+        <script defer type="text/javascript" src="js/main.js"></script>
         <title>Įrodymas</title>
     </head>
     <body>
@@ -21,14 +21,19 @@
         <div id="container">
             <div class="box">
                 <select id="prove" onChange="update()">
-                    <option>Prove</option>
+                    <option>Pasirinkti..</option>
                     <option>( a -> a )</option>
                     <option>( ( a -> a ) -> ( a -> a ) )</option>
+                    <option>( a -> ( a -> a ) )</option>
                 </select>
             </div>
         </div>
         <div id="proveDive">
             <div id="myDiv">
+                <div id="infoDiv">
+
+                </div>
+                <h2 id="proof"></h2>
                 <ul id="myUL">
                 </ul>
             </div>
