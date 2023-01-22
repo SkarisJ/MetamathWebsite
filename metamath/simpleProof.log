@@ -1,7 +1,7 @@
-The log file "simpleProof" was opened 18-Jan-2023 6:55 PM.
+The log file "pavyzdinis" was opened.
 MM> show proof th1/lemmon /all
 1 wa              $f wff a
 2 wa              $f wff a
 3 1,2 a1          $a |- ( a -> ( a -> a ) )
 MM> close log
-The log file "simpleProof" was closed 18-Jan-2023 6:56 PM.
+The log file "pavyzdinis" was closed.

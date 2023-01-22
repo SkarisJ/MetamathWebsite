@@ -124,7 +124,7 @@ myUl.addEventListener ('click', function () {
     } else {
       var expression3 = numbers[counter].concat (' ', expressions[counter]);
 
-      if (expression.length > stringLength) {
+      if (expression3.length > stringLength) {
         expression3 = expression3.substring (0, stringLength).concat ('...');
       }
       chartData.push (['' + expression3 + '', '' + expression3 + '']);
