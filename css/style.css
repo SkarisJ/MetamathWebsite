@@ -1,7 +1,7 @@
 body {
     padding-top: 60px;
     padding-bottom: 40px;
-    background: #962da4;
+    background: #b0bdf0;
 }
 
 @keyframes gradient {
@@ -20,12 +20,12 @@ body {
 
 h1 {
     color: white;
-    text-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294;
+    text-shadow: 1px 1px 2px rgb(40, 100, 230), 0 0 25px #1d70e3, 0 0 5px #3f66e7;
 }
 
 
 #header {
-    background: linear-gradient(-45deg, #3556d8, #832099, #4a23ac, #d21ea2);
+    background: linear-gradient(-45deg, #5364ad, #5364ad, #5364ad, #5364ad);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     top: 0;
@@ -40,7 +40,7 @@ h1 {
 
 .topnav {
     overflow: hidden;
-    background: linear-gradient(-45deg, #3556d8, #832099, #4a23ac, #d21ea2);
+    background: linear-gradient(-45deg, #5364ad, #5364ad, #5364ad, #5364ad);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     margin-top: 35px;
@@ -84,7 +84,7 @@ h1 {
 .heading_1 {
     margin-right: 10px;
     color: white;
-    text-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294;
+    text-shadow: 1px 1px 2px rgb(40, 100, 230), 0 0 25px #1d70e3, 0 0 5px #3f66e7;
 }
 
 .container2 {
@@ -93,7 +93,7 @@ h1 {
 
 a {
     color: white;
-    text-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294;
+    text-shadow: 1px 1px 2px rgb(40, 100, 230), 0 0 25px #1d70e3, 0 0 5px #3f66e7;
 }
 
 #c_decl {
@@ -153,6 +153,16 @@ a {
     height: 70px;
 }
 
+.bubble5 {
+    border-radius: 100px;
+    background-color: rgb(1, 176, 89);
+    color: #fff;
+    line-height: 70px;
+    text-align: center;
+    width: 900px;
+    height: 70px;
+}
+
 .examples {
     padding-left: 40px;
 }
@@ -168,7 +178,7 @@ a {
 
 h2 {
     color: white;
-    text-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294;
+    text-shadow: 1px 1px 2px rgb(40, 100, 230), 0 0 25px #1d70e3, 0 0 5px #3f66e7;
 }
 
 #chart {
@@ -184,9 +194,9 @@ ul, #myUL {
 }
 
 .axiomsDiv {
-    border: 5px solid #832099;
+    border: 5px solid #2f0dee;
     border-radius: 10px;
-    box-shadow: 1px 1px 2px rgb(250, 0, 234), 0 0 25px #db14f5, 0 0 5px #a62294
+    box-shadow: 1px 1px 2px rgb(40, 100, 230), 0 0 25px #1d70e3, 0 0 5px #3f66e7;
 }
 
 #myUL {
@@ -232,7 +242,7 @@ ul, #myUL {
 }
 
 .box select {
-    background-color: #8c55e5;
+    background-color: #3866a7;
     color: white;
     padding: 12px;
     width: 250px;
@@ -267,6 +277,54 @@ ul, #myUL {
 
 .box select option {
     padding: 30px;
+}
+
+#tryOut {
+    display: flex;
+}
+
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#input {
+    border: none;
+    background: hsl(206, 52%, 40%);
+    color: white;
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+}
+
+input {
+    border: none;
+    background: hsl(206, 52%, 40%);
+    color: white;
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.9;
+}
+
+#file {
+    position: fixed;
+    width: 50%;
+    height: 80%;
+    left: 900px;
+    border: solid 5px #04AA6D;
+    overflow-y: auto;
+}
+
+p {
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    padding: 1em;
+    line-height: 1.5em;
+    background: hsla(67, 95%, 95%, 1);
+    transition-timing-function: ease-in-out;
 }
 
 @media (max-width: 1500px) {

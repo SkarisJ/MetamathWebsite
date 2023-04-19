@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer type="text/javascript"
+            src="js/try_out.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+        <title>Kompiliatorius</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1>Metamath kalba</h1>
+        </div>
+        <div class="topnav">
+            <a href="index.html">Kintamieji</a>
+            <a href="axioms.html">Aksiomos</a>
+            <a href="hypothesis.html">Hipotezės</a>
+            <a href="modusPonens.html">Modus Ponens</a>
+            <a href="ProvingStatement.html">Irodomasis teiginys</a>
+            <a href="prove.html">Įrodymas</a>
+            <a class="active" href="try_out.html">Kompiliatorius</a>
+        </div>
+        <div id="container">
+            <div id="tryOut">
+                <div id="myForm">
+                    <h2>Įveskite reiškinį</h2>
+                    <form id="input_text">
+                        <textarea id="input" rows="4"
+                            cols="50"></textarea>
+                        <input type="submit" value="Įrašyti">
+
+                    </form>
+                    <button onclick="clearData()">Išvalyti</button>
+                    <button onclick="downloadData()">Atsisiųsti</button>
+                </div>
+
+                <div id="file">
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Įkelkite failą</h2>
+            <form id="input_file">
+                    <input type="file" id="fileInput"  name="filename" accept=".mm">
+            </form>
+            </div>
+            <py-script>
+                from js import document, FileReader
+                from pyodide.ffi import create_proxy
+                import os
+
+                def handleFileSelect():
+                    file_event = create_proxy(process_file)
+                    e = document.getElementById("fileInput")
+                    e.addEventListener("change", file_event, False)
+                
+                def read_complete(event):
+                    print("Failo turinys: ");
+                    print(event.target.result)
+
+                
+                def process_file(event):
+                    file_list = document.getElementById("fileInput").files
+
+                    for f in file_list:
+                        print("Failas: " + f.name + " nuskaitytas sėkmingai");
+                        reader = FileReader.new()
+                        onload_event = create_proxy(read_complete)
+                        reader.onload = onload_event
+                        reader.readAsText(f)
+                        print("Vyksta tikrinimas...");
+                        command = "python3 mmverify.py < " + f.name + " 2>";
+
+                        try:
+                            x = os.system(command);
+                            match x:
+                                case 0:
+                                    print("Klaidų nerasta.");
+                                    result = "teisingas"
+                                case 1:
+                                    print("Įvyko klaida");
+                                    result = "klaidingas"
+                                case _:
+                                    print("Nepavyko nuskaityti failo");
+                                    result = "nepavyko"
+                        except (error):
+                            print(error)
+                            result = "klaida"
+                        finally:
+                            print("Tikrinimas baigtas. Rezultatas: " + result);
+                
+                handleFileSelect()
+            </py-script>
+        </body>
+    </html>

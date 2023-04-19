@@ -144,14 +144,16 @@ function drawGraph () {
     },
     title: {
       text: 'Įrodymas',
-      color: 'black',
+      style: {
+        color: 'white',
+      },
     },
     plotOptions: {
       networkgraph: {
         keys: ['from', 'to'],
         color: 'green',
         link: {
-          color: 'black',
+          color: 'white',
         },
       },
     },
