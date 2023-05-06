@@ -11,15 +11,21 @@
         <div id="header">
             <h1>Metamath kalba</h1>
         </div>
-        <div class="topnav">
-            <a href="index.html">Kintamieji</a>
-            <a href="axioms.html">Aksiomos</a>
-            <a class="active" href="hypothesis.html">Hipotezės</a>
-            <a href="modusPonens.html">Modus Ponens</a>
-            <a href="ProvingStatement.html">Irodomasis teiginys</a>
-            <a href="prove.html">Įrodymas</a>
-            <a href="try_out.html">Kompiliatorius</a>
-        </div>
+        <nav>
+            <div class="dropdown-menu">
+                <button class="menu-btn">Taisyklės ↓</button>
+                <div class="menu-content">
+                    <a class="links-hidden" href="index.html">Kintamieji</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
+                    <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
+                    <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
+                </div>
+            </div>
+            <a class="links" href="writeProof.html">Programos rašymas</a>
+            <a class="links" href="validateProof.html">Validatorius ir kompiliatorius</a>
+            <a class="links" href="prove.html">Vizualizavimas</a>
+        </nav>
         <div id="container">
             <div id="c_declaration">
                 <h2 class="heading_1">Hipotezių deklaracija</h2>

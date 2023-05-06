@@ -145,15 +145,15 @@ function drawGraph () {
     title: {
       text: 'Įrodymas',
       style: {
-        color: 'white',
+        color: '#333333',
       },
     },
     plotOptions: {
       networkgraph: {
         keys: ['from', 'to'],
-        color: 'green',
+        color: '#7ace7a',
         link: {
-          color: 'white',
+          color: 'black',
         },
       },
     },
@@ -166,6 +166,9 @@ function drawGraph () {
           enabled: true,
           linkFormat: '',
           allowOverlap: false,
+          style:{
+            fontSize:20,
+          }
         },
         data: chartData,
       },

@@ -1,4 +1,4 @@
-$c |- wff ( ) -> $.
+c |- wff ( ) -> $.
 $v a b $.
 
 wa $f wff a $.

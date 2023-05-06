@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script defer type="text/javascript" src="js/main.js"></script>
-        <title>Įrodymas</title>
+        <script defer type="text/javascript"
+            src="js/writeProof.js">
+        </script>
+        <title>Programos rašymas</title>
     </head>
     <body>
         <div id="header">
@@ -28,28 +30,22 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
-            <div class="box">
-                <!-- <h2>Pasirinkite įrodymą</h2> -->
-                <select id="prove" onChange="update()">
-                    <option>Pasirinkti..</option>
-                    <option>( a -> a )</option>
-                    <option>( ( a -> a ) -> ( a -> a ) )</option>
-                    <option>( a -> ( a -> a ) )</option>
-                </select>
-            </div>
-        </div>
-        <div id="proveDive">
-            <div id="myDiv">
-                <div id="infoDiv">
+            <div id="tryOut">
+                <div id="myForm">
+                    <h2>Įveskite reiškinį</h2>
+                    <form id="input_text">
+                        <textarea id="input" rows="4"
+                            cols="50"></textarea>
+                        <input type="submit" value="Įrašyti">
 
+                    </form>
+                    <button onclick="clearData()">Išvalyti</button>
+                    <button onclick="downloadData()">Atsisiųsti</button>
                 </div>
-                <h2 id="proof"></h2>
-                <ul id="myUL">
-                </ul>
+
+                <div id="file">
+                </div>
             </div>
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
-            <div id="chart"></div>
         </div>
-    </body>
-</html>
+        </body>
+    </html>

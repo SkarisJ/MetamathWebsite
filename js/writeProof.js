@@ -1,5 +1,7 @@
 var paragraphDiv = document.getElementById ('file');
 var myForm = document.getElementById ('input_text');
+
+
 myForm.addEventListener ('submit', event => {
   event.preventDefault ();
 

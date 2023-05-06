@@ -48,20 +48,7 @@ Fhyp = tuple[Var, Const]
 Dv = tuple[Var, Var]
 Assertion = tuple[set[Dv], list[Fhyp], list[Ehyp], Stmt]
 FullStmt = tuple[Stmttype, typing.Union[Stmt, Assertion]]
-# Actually, the second component of a FullStmt is a Stmt when its first
-# component is '$e' or '$f' and an Assertion if its first component is '$a' or
-# '$p', but this is a bit cumbersome to build it into the typing system.
-# This explains the errors when static type checking (e.g., mypy): an
-# if-statement determines in which case we are, but this is invisible to the
-# type checker.
-
-# Note: a script at github.com/metamath/set.mm removes from the following code
-# the lines beginning with (spaces followed by) 'vprint(' using the command
-#   $ sed -E '/^ *vprint\(/d' mmverify.py > mmverify.faster.py
-# In order that mmverify.faster.py be valid, one must therefore not break
-# 'vprint' commands over multiple lines, nor have indented blocs containing
-# only vprint lines (this would create ill-indented files).
-
+verbosity = 2
 
 class MMError(Exception):
     """Class of Metamath errors."""
@@ -72,19 +59,12 @@ class MMKeyError(MMError, KeyError):
     """Class of Metamath key errors."""
     pass
 
-
-def vprint(vlevel: int, *arguments: typing.Any) -> None:
-    """Print log message if verbosity level is higher than the argument."""
-    if verbosity >= vlevel:
-        print(*arguments, file=logfile)
-
-
 class Toks:
     """Class of sets of tokens from which functions read as in an input
     stream.
     """
 
-    def __init__(self, file: io.TextIOWrapper) -> None:
+    def __init__(self, file: io.StringIO) -> None:
         """Construct a 'Toks' from the given file: initialize a line buffer
         containing the lines of the file, and initialize a set of imported
         files to a singleton containing that file, so as to avoid multiple
@@ -92,7 +72,7 @@ class Toks:
         """
         self.files_buf = [file]
         self.tokbuf: list[str] = []
-        self.imported_files = set({pathlib.Path(file.name).resolve()})
+        self.imported_files = file
 
     def read(self) -> StringOption:
         """Read the next token in the token buffer, or if it is empty, split
@@ -112,7 +92,6 @@ class Toks:
                 if not self.files_buf:
                     return None  # End of database
         tok = self.tokbuf.pop()
-        vprint(90, "Token:", tok)
         return tok
 
     def readf(self) -> StringOption:
@@ -143,9 +122,9 @@ class Toks:
                 self.tokbuf = []
                 self.files_buf.append(open(file, mode='r', encoding='ascii'))
                 self.imported_files.add(file)
-                vprint(5, 'Importing file:', filename)
+                #vprint(5, 'Importing file:', filename)
             tok = self.read()
-        vprint(80, "Token once included files expanded:", tok)
+        #vprint(80, "Token once included files expanded:", tok)
         return tok
 
     def readc(self) -> StringOption:
@@ -173,7 +152,7 @@ class Toks:
             assert tok == '$)'
             # 'readf' since an inclusion may follow a comment immediately
             tok = self.readf()
-        vprint(70, "Token once comments skipped:", tok)
+        #vprint(70, "Token once comments skipped:", tok)
         return tok
 
 
@@ -273,7 +252,7 @@ class FrameStack(list[Frame]):
                     f_hyps.append((typecode, var))
                     mand_vars.remove(var)
         assertion = dvs, f_hyps, e_hyps, stmt
-        vprint(18, 'Make assertion:', assertion)
+        #vprint(18, 'Make assertion:', assertion)
         return assertion
 
 
@@ -287,7 +266,7 @@ def apply_subst(stmt: Stmt, subst: dict[Var, Stmt]) -> Stmt:
             result += subst[tok]
         else:
             result.append(tok)
-    vprint(20, 'Applying subst', subst, 'to stmt', stmt, ':', result)
+    #vprint(20, 'Applying subst', subst, 'to stmt', stmt, ':', result)
     return result
 
 
@@ -369,7 +348,7 @@ class MM:
             raise MMError(
                 "Unclosed {}-statement at end of file.".format(stmttype))
         assert tok == end_token
-        vprint(20, 'Statement:', stmt)
+        #vprint(20, 'Statement:', stmt)
         return stmt
 
     def read_non_p_stmt(self, stmttype: Stmttype, toks: Toks) -> Stmt:
@@ -433,7 +412,7 @@ class MM:
                 stmt, proof = self.read_p_stmt(toks)
                 dvs, f_hyps, e_hyps, conclusion = self.fs.make_assertion(stmt)
                 if self.verify_proofs:
-                    vprint(2, 'Verify:', label)
+                    #vprint(2, 'Verify:', label)
                     self.verify(f_hyps, e_hyps, conclusion, proof)
                 self.labels[label] = ('$p', (dvs, f_hyps, e_hyps, conclusion))
                 label = None
@@ -447,7 +426,7 @@ class MM:
                 if tok in self.labels:
                     raise MMError("Label {} multiply defined.".format(tok))
                 label = tok
-                vprint(20, 'Label:', label)
+                #vprint(20, 'Label:', label)
                 if label == self.stop_label:
                     # TODO: exit gracefully the nested calls to self.read()
                     sys.exit(0)
@@ -464,7 +443,7 @@ class MM:
         """Carry out the given proof step (given the label to treat and the
         current proof stack).  This modifies the given stack in place.
         """
-        vprint(10, 'Proof step:', step)
+        #vprint(10, 'Proof step:', step)
         steptype, stepdata = step
         if steptype in ('$e', '$f'):
             stack.append(stepdata)
@@ -487,7 +466,7 @@ class MM:
                          "hypothesis ({}, {}).").format(entry, typecode, var))
                 subst[var] = entry[1:]
                 sp += 1
-            vprint(15, 'Substitution to apply:', subst)
+            #vprint(15, 'Substitution to apply:', subst)
             for h in e_hyps0:
                 entry = stack[sp]
                 subst_h = apply_subst(h, subst)
@@ -497,18 +476,18 @@ class MM:
                                   .format(entry, subst_h))
                 sp += 1
             for x, y in dvs0:
-                vprint(16, 'dist', x, y, subst[x], subst[y])
+                #vprint(16, 'dist', x, y, subst[x], subst[y])
                 x_vars = self.fs.find_vars(subst[x])
                 y_vars = self.fs.find_vars(subst[y])
-                vprint(16, 'V(x) =', x_vars)
-                vprint(16, 'V(y) =', y_vars)
+                #vprint(16, 'V(x) =', x_vars)
+                #vprint(16, 'V(y) =', y_vars)
                 for x0, y0 in itertools.product(x_vars, y_vars):
                     if x0 == y0 or not self.fs.lookup_d(x0, y0):
                         raise MMError("Disjoint variable violation: " +
                                       "{} , {}".format(x0, y0))
             del stack[len(stack) - npop:]
             stack.append(apply_subst(conclusion0, subst))
-        vprint(12, 'Proof stack:', stack)
+        #vprint(12, 'Proof stack:', stack)
 
     def treat_normal_proof(self, proof: list[str]) -> list[Stmt]:
         """Return the proof stack once the given normal proof has been
@@ -534,11 +513,11 @@ class MM:
         idx_bloc = proof.index(')')  # index of end of label bloc
         plabels += proof[1:idx_bloc]  # labels which will be referenced later
         compressed_proof = ''.join(proof[idx_bloc + 1:])
-        vprint(5, 'Referenced labels:', plabels)
+        #vprint(5, 'Referenced labels:', plabels)
         label_end = len(plabels)
-        vprint(5, 'Number of referenced labels:', label_end)
-        vprint(5, 'Compressed proof steps:', compressed_proof)
-        vprint(5, 'Number of steps:', len(compressed_proof))
+        #vprint(5, 'Number of referenced labels:', label_end)
+        #vprint(5, 'Compressed proof steps:', compressed_proof)
+        #vprint(5, 'Number of steps:', len(compressed_proof))
         proof_ints = []  # integers referencing the labels in 'labels'
         cur_int = 0  # counter for radix conversion
         for ch in compressed_proof:
@@ -549,7 +528,7 @@ class MM:
                 cur_int = 0
             else:  # 'U' <= ch <= 'Y'
                 cur_int = 5 * cur_int + ord(ch) - 84  # ord('U') = 85
-        vprint(5, 'Integer-coded steps:', proof_ints)
+        #vprint(5, 'Integer-coded steps:', proof_ints)
         # Processing of the proof
         stack: list[Stmt] = []  # proof stack
         # statements saved for later reuse (marked with a 'Z')
@@ -559,7 +538,7 @@ class MM:
         for proof_int in proof_ints:
             if proof_int == -1:  # save the current step for later reuse
                 stmt = stack[-1]
-                vprint(15, 'Saving step', stmt)
+                #vprint(15, 'Saving step', stmt)
                 saved_stmts.append(stmt)
                 n_saved_stmts += 1
             elif proof_int < label_end:
@@ -577,7 +556,7 @@ class MM:
                 # A proof step that has already been proved can be treated as
                 # a dv-free and hypothesis-free axiom.
                 stmt = saved_stmts[proof_int - label_end]
-                vprint(15, 'Reusing step', stmt)
+                #vprint(15, 'Reusing step', stmt)
                 self.treat_step(
                     ('$a',
                      (set(), [], [], stmt)),
@@ -600,7 +579,7 @@ class MM:
             stack = self.treat_compressed_proof(f_hyps, e_hyps, proof)
         else:  # normal format
             stack = self.treat_normal_proof(proof)
-        vprint(10, 'Stack at end of proof:', stack)
+        #vprint(10, 'Stack at end of proof:', stack)
         if not stack:
             raise MMError(
                 "Empty stack at end of proof.")
@@ -613,72 +592,11 @@ class MM:
         if stack[0] != conclusion:
             raise MMError(("Stack entry {} does not match proved " +
                           " assertion {}.").format(stack[0], conclusion))
-        vprint(3, 'Correct proof!')
+        #vprint(3, 'Correct proof!')
 
-    def dump(self) -> None:
-        """Print the labels of the database."""
-        print(self.labels)
+        
 
 
-if __name__ == '__main__':
-    """Parse the arguments and verify the given Metamath database."""
-    parser = argparse.ArgumentParser(description="""Verify a Metamath database.
-      The grammar of the whole file is verified.  Proofs are verified between
-      the statements with labels BEGIN_LABEL (included) and STOP_LABEL (not
-      included).
-
-      One can also use bash redirections:
-         '$ python3 mmverify.py < file.mm 2> file.log'
-      in place of
-         '$ python3 mmverify.py file.mm --logfile file.log'
-      but this fails in case 'file.mm' contains (directly or not) a recursive
-      inclusion statement '$[ file.mm $]'.""")
-    parser.add_argument(
-        'database',
-        nargs='?',
-        type=argparse.FileType(
-            mode='r',
-            encoding='ascii'),
-        default=sys.stdin,
-        help="""database (Metamath file) to verify, expressed using relative
-          path (defaults to <stdin>)""")
-    parser.add_argument(
-        '-l',
-        '--logfile',
-        dest='logfile',
-        type=argparse.FileType(
-            mode='w',
-            encoding='ascii'),
-        default=sys.stderr,
-        help="""file to output logs, expressed using relative path (defaults to
-          <stderr>)""")
-    parser.add_argument(
-        '-v',
-        '--verbosity',
-        dest='verbosity',
-        default=0,
-        type=int,
-        help='verbosity level (default=0 is mute; higher is more verbose)')
-    parser.add_argument(
-        '-b',
-        '--begin-label',
-        dest='begin_label',
-        type=str,
-        help="""label where to begin verifying proofs (included, if it is a
-          provable statement)""")
-    parser.add_argument(
-        '-s',
-        '--stop-label',
-        dest='stop_label',
-        type=str,
-        help='label where to stop verifying proofs (not included)')
-    args = parser.parse_args()
-    verbosity = args.verbosity
-    db_file = args.database
-    logfile = args.logfile
-    vprint(1, 'mmverify.py -- Proof verifier for the Metamath language')
-    mm = MM(args.begin_label, args.stop_label)
-    vprint(1, 'Reading source file "{}"...'.format(db_file.name))
-    mm.read(Toks(db_file))
-    vprint(1, 'No errors were found.')
-    # mm.dump()
+def main(metamath_file):
+    mm = MM(None, None)
+    mm.read(Toks(io.StringIO(metamath_file)))

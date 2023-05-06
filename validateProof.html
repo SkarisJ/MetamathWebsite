@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script defer type="text/javascript"
+            src="js/validateProof.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+            <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+          >
+          </script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+        <title>Programos rašymas ir kompiliavimas</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1>Metamath kalba</h1>
+        </div>
+        <nav>
+            <div class="dropdown-menu">
+                <button class="menu-btn">Taisyklės ↓</button>
+                <div class="menu-content">
+                    <a class="links-hidden" href="index.html">Kintamieji</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
+                    <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
+                    <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
+                </div>
+            </div>
+            <a class="links" href="writeProof.html">Programos rašymas</a>
+            <a class="links" href="validateProof.html">Validatorius ir kompiliatorius</a>
+            <a class="links" href="prove.html">Vizualizavimas</a>
+        </nav>
+        <div id="container">
+            <div id="valCompile">
+                <div id="infoDiv">
+                <h2>Įkelkite failą validacijai</h2>
+                <form id="input_file">
+                        <input type="file" id="fileInput"  name="filename" accept=".mm">
+                </form>
+                <button id="clearingResults">Išvalyti komentarus</button> 
+                <div id="information">       
+                </div>
+                </div>
+                <div id = "chart2">
+                    <h2>Įkelkite failą kompiliavimui</h2>
+                    <form id="input_file">
+                            <input type="file" id="fileInputCompile"  name="filenameCOmpile" accept=".mm">
+                    </form>
+                    <button id="clearingResults2">Išvalyti komentarus</button> 
+                    <div id="information2">   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <py-config id="configuration">
+            [[fetch]]
+            files = ["./mmverify.py"]
+        </py-config>
+        <py-script src="python/main.py">
+        </py-script>
+        </body>
+    </html>
