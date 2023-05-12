@@ -27,8 +27,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -50,11 +50,12 @@
                 </div>
                 <div id = "chart2">
                     <h2>Įkelkite failą kompiliavimui</h2>
-                    <form id="input_file">
-                            <input type="file" id="fileInputCompile"  name="filenameCOmpile" accept=".mm">
+                    <form id="compile_file" enctype="multipart/form-data">
+                            <input type="file" id="fileInputCompile"  name="filenameCompile" accept=".mm">
+                            <input type="submit" value="Kompiliuoti">
                     </form>
                     <button id="clearingResults2">Išvalyti komentarus</button> 
-                    <div id="information2">   
+                    <div id="information2">
                     </div>
                 </div>
             </div>

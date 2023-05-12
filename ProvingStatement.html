@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer type="text/javascript" src="js/syntaxVisualise.js"></script>
         <title>Įrodomasis teiginys</title>
     </head>
     <body>
@@ -16,8 +17,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -27,6 +28,16 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
+            <button id="popup-button2" onclick="openPopup()">Įrodomojo teiginio informacija</button>
+            <div class="popup" id="myPopup">
+                <span class="close">&times;</span>
+                <h2 id="popupH2">Įrodomojo teiginio naudojimas</h2>
+                <p id="popupP">Įrodomo teiginio raktažodis Metamath kalboje yra žymimas <b id="bold">$p</b> ženklu. 
+                    Šis raktažodis privalo turėti etiketę, teiginį, kuris bus įrodomas bei <b id="bold">$=</b> ir  <b id="bold">$.</b> ženklus, 
+                    kurie atitinkamai reiškia įrodymo pradžią ir pabaigą. 
+                    Įrodomas teiginys pagal pateiktą įrodymo seką nurodo Metamath programai instrukcijas kaip įrodyti teiginį 
+                    ir kokius veiksmus reikia atlikti.</p>
+            </div>
             <div id="c_declaration">
                 <h2 class="heading_1">Įrodomo teiginio deklaracija</h2>
                 <div class="bubble4 container2">
@@ -70,8 +81,8 @@
                         <div class="bubble4 container2">
                             <b><i id="c_decl">|-</i></b>
                         </div>
-                        <div class="bubble2 container2">
-                            <b id="variables" class="changes">( a -> a )</b>
+                        <div class="bubble3 container2">
+                            <b id="variables" class="changes">( ( a -> a ) -> ( a -> a ) )</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="end_statement">
@@ -79,9 +90,7 @@
                             </b>
                         </div>
                         <div class="bubble5 container2">
-                            <b id="variables" class="changes">wa wa wa wi wi wa wa wi wa wa wa wi wa wi wi
-                                wa wa wa wi wi wa wa wi wi wa wa wa wi wa a2
-                                wa wa wa wi a1 mp wa wa a1 mp</b>
+                            <b id="variables" class="changes">wa wa wa wi wi wa wa wi wa wa wi wi wa wa a1 wa wa wa a2 mp</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="end_statement">

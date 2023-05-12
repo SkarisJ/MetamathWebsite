@@ -1,6 +1,6 @@
 var paragraphDiv = document.getElementById ('file');
 var myForm = document.getElementById ('input_text');
-
+var counter = 0;
 
 myForm.addEventListener ('submit', event => {
   event.preventDefault ();
@@ -8,11 +8,14 @@ myForm.addEventListener ('submit', event => {
   // Save the data to Local Storage
   const data = JSON.parse (localStorage.getItem ('myData') || '[]');
   if (myForm.elements['input'].value != '') {
+    counter++;
     data.push (myForm.elements['input'].value);
     localStorage.setItem ('myData', JSON.stringify (data));
 
     var newP = document.createElement ('p');
-    newP.innerText = myForm.elements['input'].value;
+    newP.append(counter + ' |');
+    newP.append(' ');
+    newP.append(myForm.elements['input'].value);
     paragraphDiv.appendChild (newP);
     myForm.elements['input'].value = '';
   }

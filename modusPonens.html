@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer type="text/javascript" src="js/syntaxVisualise.js"></script>
         <title>Modus ponens</title>
     </head>
     <body>
@@ -16,8 +17,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -27,6 +28,30 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
+            <button id="popup-button2" onclick="openPopup()">Modus ponens informacija</button>
+            <div class="popup" id="myPopup">
+                <span class="close">&times;</span>
+                <h2 id="popupH2">Modus ponens naudojimas</h2>
+                <p id="popupP">Modus ponens taisyklė yra apibrėžiama tarp <b id="bold">${</b> ir <b id="bold">$}</b> ženklų. 
+                    Šių ženklų vduje yra aprašomi reiškiniai, kurie atitinka modus ponens taisyklę. 
+                    Į bloką yra kreipiamasi pagal paskutinio reiškinio etiketę ir Metamath programa, nustatydama, jog tai yra nuoroda į bloko vidų, 
+                    atlieka visus tame bloke esančius veiksmus, taip patikrindama ar veiksmus galima atlikti ir, ar teiginys yra teisingas. </p>
+                
+                    <table style="width:100%">
+                        <tr>
+                            <th>Išraiška</th>
+                        </tr>
+                        <tr>
+                            <td> p</td>
+                        </tr>
+                        <tr>
+                            <td>p -> q</td>
+                        </tr>
+                        <tr>
+                            <td> q</td>
+                        </tr>
+                    </table>
+            </div>
             <div id="c_declaration">
                 <h2 class="heading_1">Modus ponens deklaracija</h2>
                 <div class="bubble4 container2">

@@ -2,7 +2,9 @@ var toggler = document.getElementsByClassName ('caret');
 var container = document.getElementById ('chart');
 var myUl = document.getElementById ('myUL');
 var proof = document.getElementById ('proof');
-var infoDiv = document.getElementById ('infoDiv');
+var select = document.getElementById('prove');
+var popup = document.getElementById("myPopup");
+var button = document.getElementById("popup-button");
 var i;
 let chartData = [];
 let numbers = [];
@@ -10,8 +12,25 @@ let expressions = [];
 let dependencies = [];
 let counter = 0;
 let stringLength = 20;
+let constants = [];
+let variables = [];
+let hypothesis = [];
+let axioms = [];
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  fetch('http://localhost:5000/files')
+  .then(response => response.json())
+  .then(files => {
+    files.forEach(file => {
+      const option = document.createElement('option');
+      option.text = file;
+      select.add(option);
+    });
+  });
+});
+
 function containsNumber (str) {
-  return /\d/.test (str);
+  return /^\s*\d+/.test (str);
 }
 
 function readTextFile (file) {
@@ -21,8 +40,7 @@ function readTextFile (file) {
     if (rawFile.readyState === 4) {
       if (rawFile.status === 200 || rawFile.status == 0) {
         var lines = rawFile.responseText.split ('\n');
-        const numberedLines = lines.filter (lines => lines.match (/^\d+/));
-
+        const numberedLines = lines.filter (lines => lines.match (/^\s*\d+/));
         numberedLines.forEach (line => {
           const oneLine = line.split (' ');
 
@@ -39,7 +57,8 @@ function readTextFile (file) {
           } else {
             dependencies.push ('');
           }
-          expressions.push (line.substring (25, line.length));
+          
+          expressions.push (line.substring (23, line.length).replace('-',''));
           oneLine.forEach (element => {
             if (!isNaN (element) && element != '') {
               numbers.push (element);
@@ -50,30 +69,129 @@ function readTextFile (file) {
     }
   };
   rawFile.send (null);
+  if (expressions.length > 0) {
+    readOriginalFile (file.replace('.log','.mm'));
+    draw ();
+  }
 }
 
-function draw (proofNo) {
-  proof.innerHTML = 'Įrodymas';
+function readOriginalFile(file){
+  var rawFile = new XMLHttpRequest ();
+  rawFile.open ('GET', file, false);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4) {
+      if (rawFile.status === 200 || rawFile.status == 0) {
+        var lines = rawFile.responseText.split ('\n');
+        const filteredConstants = lines.filter(line => line.includes('$c'));
+        filteredConstants.forEach (line => {
+           const regex = /\$c\s(.+?)\s\$/;
+           const matches = line.match(regex);
+           const extractedText = matches[1];
+           const arr = extractedText.split(" ");
 
-  if (proofNo === 1 || proofNo === 2) {
-    infoDiv.innerHTML = `
-    <div class = "axiomsDiv"> 
-    <h2 id="axioms">Aksiomos</h2>
-    <ul id="axiomsUl">
-    <li class = "axiomsCaret">( a -> ( b -> a ) )</li>
-    <li class = "axiomsCaret">( ( a -> ( b -> c ) ) -> ( ( a -> b ) -> ( a -> c ) ) )</li>
-    </ul>
-    </div>`;
-  } else if (proofNo === 3) {
-    infoDiv.innerHTML = `
-    <div class = "axiomsDiv"> 
-    <h2 id="axioms">Aksiomos</h2>
-    <ul id="axiomsUl">
-    <li class = "axiomsCaret">( a -> ( b -> a ) )</li>
-    </ul>
-    </div>`;
+           arr.forEach(element =>{
+            constants.push(element)
+           })
+        });
+        const filteredVariables = lines.filter(line => line.includes('$v'));
+        filteredVariables.forEach (line => {
+          const regex = /\$v\s(.+?)\s\$/;
+          const matches = line.match(regex);
+          const extractedText = matches[1];
+          const arr = extractedText.split(" ");
+
+           arr.forEach(element =>{
+            variables.push(element)
+           })
+        });
+        const filteredHypothesis = lines.filter(line => (line.includes('$f') || line.includes('$e')) && !line.includes('min') && !line.includes('maj'));
+        filteredHypothesis.forEach (line => {
+         const regex = /\$f\s(.+?)\s\$/;
+         const regex2 = /\$e\s(.+?)\s\$/;
+         const matches = line.match(regex) || line.match(regex2);
+         const extractedText = matches[1];
+         hypothesis.push(extractedText)
+        });
+        const filteredAxioms = lines.filter(line => line.includes('$a') && line.includes('|-') && !line.includes('mp'));
+        filteredAxioms.forEach (line => {
+         const regex = /\|-\s(.+?)\s\$/;
+         const matches = line.match(regex);
+         const extractedText = matches[1];
+         axioms.push(extractedText)
+        });
+      }
+    }
+  };
+  rawFile.send (null);
+}
+function draw () {
+  if (constants.length > 0){
+    var h3 = document.createElement('h3');
+    h3.setAttribute('class','pop');
+    h3.innerHTML = 'Konstantos: ';
+    popup.appendChild(h3);
+    var ul = document.createElement('ul');
+    ul.setAttribute('class','pop');
+    constants.forEach(constant =>{
+      var li = document.createElement('li');
+      li.setAttribute('class','axiomsCaret');
+      li.innerHTML = constant;
+      ul.appendChild(li);
+    });
+    popup.appendChild(ul);
   }
 
+  if (variables.length > 0){
+    var h3 = document.createElement('h3');
+    h3.setAttribute('class','pop');
+    h3.innerHTML = 'Kintamieji: ';
+    popup.appendChild(h3);
+    var ul = document.createElement('ul');
+    ul.setAttribute('class','pop');
+
+    variables.forEach(variable =>{
+      var li = document.createElement('li');
+      li.setAttribute('class','axiomsCaret');
+      li.innerHTML = variable;
+      ul.appendChild(li);
+    });
+    popup.appendChild(ul);
+  }
+
+  if (hypothesis.length > 0){
+    var h3 = document.createElement('h3');
+    h3.setAttribute('class','pop');
+    h3.innerHTML = 'Hipotezės: ';
+    popup.appendChild(h3);
+    var ul = document.createElement('ul');
+    ul.setAttribute('class','pop');
+
+    hypothesis.forEach(hypothes =>{
+      var li = document.createElement('li');
+      li.setAttribute('class','axiomsCaret');
+      li.innerHTML = hypothes;
+      ul.appendChild(li);
+    });
+    popup.appendChild(ul);
+  }
+
+  if (axioms.length > 0){
+    var h3 = document.createElement('h3');
+    h3.setAttribute('class','pop');
+    h3.innerHTML = 'Aksiomos: ';
+    popup.appendChild(h3);
+    var ul = document.createElement('ul');
+    ul.setAttribute('class','pop');
+    
+    axioms.forEach(axiom =>{
+      var li = document.createElement('li');
+      li.setAttribute('class','axiomsCaret');
+      li.innerHTML = axiom;
+      ul.appendChild(li);
+    });
+    popup.appendChild(ul);
+  }
+  proof.innerHTML = 'Įrodymo rezultatas';
   var li = document.createElement ('li');
   li.setAttribute ('class', 'caret');
   li.appendChild (
@@ -143,7 +261,7 @@ function drawGraph () {
       backgroundColor: 'transparent',
     },
     title: {
-      text: 'Įrodymas',
+      text: 'Grafinis įrodymas',
       style: {
         color: '#333333',
       },
@@ -180,51 +298,57 @@ function update () {
   var select = document.getElementById ('prove');
   var option = select.options[select.selectedIndex];
 
-  if (option.text == '( a -> a )') {
+  if(option.text != 'Pasirinkti..'){
     myUl.innerHTML = '';
     container.innerHTML = '';
     proof.innerHTML = '';
-    infoDiv.innerHTML = '';
     chartData = [];
     numbers = [];
     expressions = [];
     dependencies = [];
+    constants = [];
+    variables=[];
+    hypothesis = [];
+    axioms = [];
     counter = 0;
-    readTextFile ('metamath/prove1.log');
-    draw (1);
-  } else if (option.text == '( ( a -> a ) -> ( a -> a ) )') {
+    $(".pop").empty();
+    $(".axiomsCaret").empty();
+    readTextFile ('./' + option.text);
+  }
+  else{
     myUl.innerHTML = '';
     container.innerHTML = '';
     proof.innerHTML = '';
-    infoDiv.innerHTML = '';
     chartData = [];
     numbers = [];
     expressions = [];
     dependencies = [];
+    constants = [];
+    variables=[];
+    hypothesis = [];
+    axioms = [];
     counter = 0;
-    readTextFile ('metamath/prove2.log');
-    draw (2);
-  } else if (option.text == '( a -> ( a -> a ) )') {
-    myUl.innerHTML = '';
-    container.innerHTML = '';
-    proof.innerHTML = '';
-    infoDiv.innerHTML = '';
-    chartData = [];
-    numbers = [];
-    expressions = [];
-    dependencies = [];
-    counter = 0;
-    readTextFile ('metamath/simpleProof.log');
-    draw (3);
-  } else {
-    myUl.innerHTML = '';
-    container.innerHTML = '';
-    proof.innerHTML = '';
-    infoDiv.innerHTML = '';
-    chartData = [];
-    numbers = [];
-    expressions = [];
-    dependencies = [];
-    counter = 0;
+    $(".pop").empty();
+    $(".axiomsCaret").empty();
+  }
+}
+
+function openPopup() {
+  if (popup.innerHTML.trim() === '') {
+    return;
+  }
+  popup.style.display = "block";
+}
+
+// When the user clicks on the close button, hide the popup
+var close = document.getElementsByClassName("close")[0];
+close.onclick = function() {
+  popup.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the popup, close it
+window.onclick = function(event) {
+  if (event.target == popup) {
+    popup.style.display = "none";
   }
 }

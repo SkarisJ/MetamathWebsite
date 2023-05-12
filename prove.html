@@ -5,6 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script defer type="text/javascript" src="js/main.js"></script>
         <title>Įrodymas</title>
     </head>
@@ -17,8 +19,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -28,21 +30,19 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
+            <button id="popup-button2" onclick="openPopup()">Įrodymo informacija</button>
+            <div class="popup" id="myPopup">
+                <span class="close">&times;</span>
+                <h2 id="popupH2">Naudojami elementai įrodyme</h2>
+            </div>
             <div class="box">
-                <!-- <h2>Pasirinkite įrodymą</h2> -->
                 <select id="prove" onChange="update()">
                     <option>Pasirinkti..</option>
-                    <option>( a -> a )</option>
-                    <option>( ( a -> a ) -> ( a -> a ) )</option>
-                    <option>( a -> ( a -> a ) )</option>
                 </select>
             </div>
         </div>
         <div id="proveDive">
             <div id="myDiv">
-                <div id="infoDiv">
-
-                </div>
                 <h2 id="proof"></h2>
                 <ul id="myUL">
                 </ul>

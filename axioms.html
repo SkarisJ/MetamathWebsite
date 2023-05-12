@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer type="text/javascript" src="js/syntaxVisualise.js"></script>
         <title>Aksiomos</title>
     </head>
     <body>
@@ -16,8 +17,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -27,6 +28,44 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
+            <button id="popup-button2" onclick="openPopup()">Aksiomų informacija</button>
+            <div class="popup" id="myPopup">
+                <span class="close">&times;</span>
+                <h2 id="popupH2">Aksiomų naudojimas</h2>
+                <h3>Aksiomos</h3>
+                <p id="popupP">Aksiominio teiginio raktažodis Metamath kalboje yra žymimas <b id="bold">$a</b> ženklu. 
+                    Šis raktažodis yra skirtas apibrėžti pradinius reiškinius, kurie vėliau bus naudojami kitiems teiginiams išvesti. 
+                    Su aksiominio teiginio raktažodžiu galima apibrėžti termus ir gerai sukonstruotas formules, iš kurių bus konstruojami kiti teiginiai, arba aksiomas, kurios bus naudojamos įrodymo metu. 
+                    Aksiomoms apibrėžti yra naudojami termai arba gerai sukonstruotos formulės ir matematiniai simboliai, kurie sudaro teiginį, kuris gali būti įrodomas.
+                </p>
+                <p id="popupP">
+                    Apsibrėžus hipotezes, naudojantis aksiomomis galima kaitalioti to pačio tipo kintamuosius ar konstantas. Toks keitimasis vyksta remiantis pakeitimo taisykle.
+                </p>
+
+                <h3>Pakeitimo taisyklė</h3>
+                <table style="width:100%">
+                    <tr>
+                        <th>Žingsnis</th>
+                        <th>Nuoroda</th>
+                        <th>Išraiška</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td> |- (2+2) = (2+(1+1))</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td> |- 4 = (2+(1+1))</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>1,2</td>
+                        <td> |- 4 = (2+2)</td>
+                    </tr>
+                </table>
+            </div>
             <div id="c_declaration">
                 <h2 class="heading_1">Aksiomų deklaracija</h2>
                 <div class="bubble4 container2">
@@ -65,8 +104,7 @@
                             <b><i id="c_decl">|-</i></b>
                         </div>
                         <div class="bubble3 container2">
-                            <b id="variables" class="changes">( a -> ( b -> a )
-                                )</b>
+                            <b id="variables" class="changes">|- ( a -> ( b -> a ) )</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="end_statement">
@@ -116,8 +154,7 @@
                             <b><i id="c_decl">|-</i></b>
                         </div>
                         <div class="bubble3 container2">
-                            <b id="variables" class="changes">( ( a -> ( b -> c
-                                ) ) -> ( ( a -> b ) -> ( a -> c ) ) )</b>
+                            <b id="variables" class="changes">( ( a -> ( b -> c ) ) -> ( ( a -> b ) -> ( a -> c ) ) )</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="end_statement">

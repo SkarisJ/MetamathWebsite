@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer type="text/javascript" src="js/syntaxVisualise.js"></script>
         <title>Kintamieji</title>
     </head>
     <body>
@@ -16,8 +17,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -27,6 +28,18 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
+            <button id="popup-button2" onclick="openPopup()">Konstantų ir kintamųjų informacija</button>
+            <div class="popup" id="myPopup">
+                <span class="close">&times;</span>
+                <h2 id="popupH2">Konstantų ir kintamųjų naudojimas</h2>
+                <h3>Konstantos</h3>
+                <p id="popupP">Metamath kalboje konstantų deklaracijos raktažodis yra žymimas <b id="bold">$c</b> ženklu. Konstantose 
+                    Metamath kalboje yra apibrėžiami visi matematiniai simboliai, kiti įrodymui reikalingi simboliai ir naudojami raktažodžiai.</p>
+                <p id="popupP">Šie simboliai vėliau bus naudojami hipotezėms apibrėžti. Konstantos yra nekintantis kintamasis, todėl Metamath kalboje nėra taikoma pakeitimo taisyklė.</p>
+                <h3>Kntamieji</h3>
+                <p id="popupP">Metamath kalboje kintamųjų deklaracijos raktažodis yra žymimas <b id="bold">$v</b> ženklu. 
+                    Kintamuosiuose yra apibrėžiami visi kintamieji, kurie bus naudojami įrodyme ir kuriems bus pritaikoma pakeitimo taisyklė.</p>
+            </div>
             <div id="c_declaration">
                 <h2 class="heading_1">Konstantų deklaracija</h2>
                 <div class="bubble container2">
@@ -38,7 +51,7 @@
                     <b><i id="token">Matematiniai ženklai</i></b>
                 </div>
                 <div class="bubble container2">
-                    <b id="variables">Kintamieji</b>
+                    <b id="variables">Konstantos</b>
                 </div>
                 <div class="bubble container2">
                     <b id="end_statement">
@@ -54,10 +67,10 @@
                             </b>
                         </div>
                         <div class="bubble2 container2">
-                            <b><i id="variables" class="changes">|- ( ) + = </i></b>
+                            <b><i id="variables" class="changes">|- ( ) -></i></b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">wff term var</b>
+                            <b id="variables" class="changes">wff</b>
                         </div>
                         <div class="bubble container2">
                             <b id="end_statement">
@@ -86,21 +99,6 @@
                     <b id="variables">kintamasis</b>
                 </div>
                 <div class="bubble container2">
-                    <b id="variables">kintamasis</b>
-                </div>
-                <div class="bubble container2">
-                    <b id="variables">kintamasis</b>
-                </div>
-                <div class="bubble container2">
-                    <b id="variables">kintamasis</b>
-                </div>
-                <div class="bubble container2">
-                    <b id="variables">kintamasis</b>
-                </div>
-                <div class="bubble container2">
-                    <b id="variables">kintamasis</b>
-                </div>
-                <div class="bubble container2">
                     <b id="end_statement">
                         <i>$.</i>
                     </b>
@@ -114,28 +112,13 @@
                             </b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">v</b>
+                            <b id="variables" class="changes">a</b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">s</b>
+                            <b id="variables" class="changes">b</b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">t</b>
-                        </div>
-                        <div class="bubble2 container2">
-                            <b id="variables" class="changes">u</b>
-                        </div>
-                        <div class="bubble2 container2">
-                            <b id="variables" class="changes">s0</b>
-                        </div>
-                        <div class="bubble2 container2">
-                            <b id="variables" class="changes">s1</b>
-                        </div>
-                        <div class="bubble2 container2">
-                            <b id="variables" class="changes">t0</b>
-                        </div>
-                        <div class="bubble2 container2">
-                            <b id="variables" class="changes">t1</b>
+                            <b id="variables" class="changes">c</b>
                         </div>
                         <div class="bubble container2">
                             <b id="end_statement">
@@ -147,4 +130,3 @@
             </div>
         </div>
     </body>
-</html>

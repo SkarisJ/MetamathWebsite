@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script defer type="text/javascript" src="js/syntaxVisualise.js"></script>
         <title>Hipotezės</title>
     </head>
     <body>
@@ -16,8 +17,8 @@
                 <button class="menu-btn">Taisyklės ↓</button>
                 <div class="menu-content">
                     <a class="links-hidden" href="index.html">Kintamieji</a>
-                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="hypothesis.html">Hipotezės</a>
+                    <a class="links-hidden" href="axioms.html">Aksiomos</a>
                     <a class="links-hidden" href="modusPonens.html">Modus Ponens</a>
                     <a class="links-hidden" href="ProvingStatement.html">Įrodomasis teiginys</a>
                 </div>
@@ -27,6 +28,15 @@
             <a class="links" href="prove.html">Vizualizavimas</a>
         </nav>
         <div id="container">
+            <button id="popup-button2" onclick="openPopup()">Hipotezių informacija</button>
+            <div class="popup" id="myPopup">
+                <span class="close">&times;</span>
+                <h2 id="popupH2">Hipotezių naudojimas</h2>
+                <p id="popupP">Kintamųjų hipotezės raktažodis Metamath kalboje yra žymimas <b id="bold">$f</b> ženklu. 
+                    Šis raktažodis yra naudojamas apibrėžti hipotezes, kurios bus naudojamos įrodymo metu. 
+                    Kiekviena hipotezė privalo turėti etiketę, kuri bus nuoroda į hipotezę bei privalo būti naudojamos anksčiau deklaruotos konstantos kartu su kintamuoju. 
+                    Hipotezės metu yra nurodomas kintamojo tipas: ar tai yra termas, ar gerai sukonstruota formulė.</p>
+            </div>
             <div id="c_declaration">
                 <h2 class="heading_1">Hipotezių deklaracija</h2>
                 <div class="bubble4 container2">
@@ -52,7 +62,7 @@
                     <div id="c_declaration">
                         <h2 class="heading_1">Pavyzdys</h2>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">termT</b>
+                            <b id="variables" class="changes">wa</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="c_decl">
@@ -60,10 +70,10 @@
                             </b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">term</b>
+                            <b id="variables" class="changes">wff</b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">t</b>
+                            <b id="variables" class="changes">a</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="end_statement">
@@ -100,7 +110,7 @@
                     <div id="c_declaration">
                         <h2 class="heading_1">Pavyzdys</h2>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">wffP</b>
+                            <b id="variables" class="changes">wb</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="c_decl">
@@ -111,7 +121,55 @@
                             <b id="variables" class="changes">wff</b>
                         </div>
                         <div class="bubble2 container2">
-                            <b id="variables" class="changes">P</b>
+                            <b id="variables" class="changes">b</b>
+                        </div>
+                        <div class="bubble4 container2">
+                            <b id="end_statement">
+                                <i>$.</i>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="container">
+            <div id="c_declaration">
+                <h2 class="heading_1">Hipotezių deklaracija</h2>
+                <div class="bubble4 container2">
+                    <b id="variables">etiketė</b>
+                </div>
+                <div class="bubble4 container2">
+                    <b id="c_decl">
+                        <i>$f</i>
+                    </b>
+                </div>
+                <div class="bubble4 container2">
+                    <b id="variables">tipas</b>
+                </div>
+                <div class="bubble4 container2">
+                    <b id="variables">kintamasis</b>
+                </div>
+                <div class="bubble4 container2">
+                    <b id="end_statement">
+                        <i>$.</i>
+                    </b>
+                </div>
+                <div class="examples">
+                    <div id="c_declaration">
+                        <h2 class="heading_1">Pavyzdys</h2>
+                        <div class="bubble2 container2">
+                            <b id="variables" class="changes">wc</b>
+                        </div>
+                        <div class="bubble4 container2">
+                            <b id="c_decl">
+                                <i>$f</i>
+                            </b>
+                        </div>
+                        <div class="bubble2 container2">
+                            <b id="variables" class="changes">wff</b>
+                        </div>
+                        <div class="bubble2 container2">
+                            <b id="variables" class="changes">c</b>
                         </div>
                         <div class="bubble4 container2">
                             <b id="end_statement">
