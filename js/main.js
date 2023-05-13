@@ -88,9 +88,10 @@ function readOriginalFile(file){
            const matches = line.match(regex);
            const extractedText = matches[1];
            const arr = extractedText.split(" ");
-
            arr.forEach(element =>{
+            if(element != ''){
             constants.push(element)
+            }
            })
         });
         const filteredVariables = lines.filter(line => line.includes('$v'));
@@ -101,7 +102,9 @@ function readOriginalFile(file){
           const arr = extractedText.split(" ");
 
            arr.forEach(element =>{
-            variables.push(element)
+            if(element != ''){
+              variables.push(element)
+            }
            })
         });
         const filteredHypothesis = lines.filter(line => (line.includes('$f') || line.includes('$e')) && !line.includes('min') && !line.includes('maj'));
@@ -345,6 +348,12 @@ var close = document.getElementsByClassName("close")[0];
 close.onclick = function() {
   popup.style.display = "none";
 }
+
+document.addEventListener("keydown", function(event) {
+  if (event.keyCode === 27 || event.which === 27) {
+    popup.style.display = "none";
+  }
+});
 
 // When the user clicks anywhere outside of the popup, close it
 window.onclick = function(event) {

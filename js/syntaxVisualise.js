@@ -14,6 +14,12 @@ function openPopup() {
   close.onclick = function() {
     popup.style.display = "none";
   }
+
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 27 || event.which === 27) {
+      popup.style.display = "none";
+    }
+  });
   
   // When the user clicks anywhere outside of the popup, close it
   window.onclick = function(event) {
