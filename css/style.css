@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-    color: #333333;
+    color: white;
     padding: 10px;
     border-radius: 20px;
 }
@@ -15,7 +15,7 @@ h1 {
 
 #header {
     background-color:  #0076a8;
-    color: #333333;
+    color: white;
     padding: 10px;
     border-radius: 20px;
     top: 0;
@@ -144,9 +144,10 @@ a {
     color: #fff;
     line-height: 70px;
     text-align: center;
-    width: 150px;
+    width: 200px;
     height: 70px;
     margin-top: 30px;
+    font-size: 20px;
 }
 
 .bubble2 {
@@ -155,9 +156,10 @@ a {
     color: #fff;
     line-height: 70px;
     text-align: center;
-    width: 120px;
+    width: 160px;
     height: 70px;
     margin-top: 30px;
+    font-size: 20px;
 }
 
 .bubble3 {
@@ -166,9 +168,10 @@ a {
     color: #fff;
     line-height: 70px;
     text-align: center;
-    width: 307px;
+    width: 300px;
     height: 70px;
     margin-top: 30px;
+    font-size: 20px;
 }
 
 .bubble4 {
@@ -177,9 +180,10 @@ a {
     color: #fff;
     line-height: 70px;
     text-align: center;
-    width: 120px;
+    width: 160px;
     height: 70px;
     margin-top: 30px;
+    font-size: 20px;
 }
 
 .bubble5 {
@@ -188,9 +192,10 @@ a {
     color: #fff;
     line-height: 70px;
     text-align: center;
-    width: 470px;
+    width: 580px;
     height: 70px;
     margin-top: 30px;
+    font-size: 20px;
 }
 
 .examples {
