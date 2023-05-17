@@ -558,7 +558,59 @@ input[type="submit"]:hover {
     color: #333333;
 }
 
-@media screen and (max-width: 1500px){
+@media (max-width:  768px) {
+    #proveDive {
+        margin-top: 60px;
+        display: block;
+    }
+
+    #chart {
+        width: 110%;
+        height: 65%;
+        position: relative;
+        left: 0;
+    }
+
+    #valCompile{
+        display: block;
+    }
+
+    #chart2 {
+        width: 110%;
+        height: 65%;
+        position: relative;
+        left: 0;
+    }
+
+    #tryOut {
+        display: block;
+    }
+
+    #file {
+        position: relative;
+        margin-top: 20px;
+        width: 80%;
+        height: auto;
+        left: 0px;
+        border: solid 5px #0076a8;
+        overflow-y: auto;
+    }
+
+    #popup-button2 {
+        padding: 10px 20px;
+        background-color: #0076a8;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 30px;
+    }
+
+    #container{
+        margin-top: 380px;
+    }
+}
+@media (max-width: 1500px){
 
     #proveDive {
         margin-top: 60px;
@@ -608,6 +660,6 @@ input[type="submit"]:hover {
     }
 
     #container{
-        margin-top: 300px;
+        margin-top: 170px;
     }
 }
