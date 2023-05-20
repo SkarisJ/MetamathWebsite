@@ -21,7 +21,7 @@ def read_complete(event):
     except Exception as e:
         p5 = document.createElement('p');
         p5.setAttribute('id','results');
-        p5.append(e);
+        p5.append('ERROR: ' + str(e.args[0]));
         htmlDiv.append(p5);
         result = "programa nevalidi"
     finally:
