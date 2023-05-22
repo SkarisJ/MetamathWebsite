@@ -1,24 +1,7 @@
-The log file "myFile.log" was opened 13-May-2023 4:00 PM.
+The log file "myFile.log" was opened 22-May-2023 3:55 PM.
 MM> show proof th1/lemmon/all
- 1 wa            $f wff a
- 2 wa            $f wff a
- 3 wa            $f wff a
- 4 2,3 wi        $a wff ( a -> a )
- 5 1,4 wi        $a wff ( a -> ( a -> a ) )
- 6 wa            $f wff a
- 7 wa            $f wff a
- 8 6,7 wi        $a wff ( a -> a )
- 9 wa            $f wff a
-10 wa            $f wff a
-11 9,10 wi       $a wff ( a -> a )
-12 8,11 wi       $a wff ( ( a -> a ) -> ( a -> a ) )
-13 wa            $f wff a
-14 wa            $f wff a
-15 13,14 a1      $a |- ( a -> ( a -> a ) )
-16 wa            $f wff a
-17 wa            $f wff a
-18 wa            $f wff a
-19 16,17,18 a2   $a |- ( ( a -> ( a -> a ) ) -> ( ( a -> a ) -> ( a -> a ) ) )
-20 5,12,15,19 mp  $a |- ( ( a -> a ) -> ( a -> a ) )
+1 wa             $f wff a
+2 wa             $f wff a
+3 1,2 a1         $a |- ( a -> ( a -> a ) )
 MM> close log
-The log file "myFile.log" was closed 13-May-2023 4:00 PM.
+The log file "myFile.log" was closed 22-May-2023 3:55 PM.

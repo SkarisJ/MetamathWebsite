@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import subprocess
 import os
+import re
 
 app = Flask(__name__)
 CORS(app)
@@ -27,8 +28,14 @@ def upload_file():
     base_name, _ = os.path.splitext(file.filename)
 
     if file:
-        file.save(file.filename)
-        subprocess.call([metamath_exe_path, f'read {file.filename}', f'open log {base_name}.log', 'show proof th1/lemmon/all', 'close log'])
+         file.save(file.filename)
+         
+         with open(file.filename, 'r') as file2:
+            file_content = file2.read();
+            match = re.search(r'\n(\w+)\s+\$p', file_content)
+            result = match.group(1)
+
+         subprocess.call([metamath_exe_path, f'read {file.filename}', f'open log {base_name}.log', f'show proof {result}/lemmon/all', 'close log'])
 
 if __name__ == '__main__':
     app.run(debug=True)
