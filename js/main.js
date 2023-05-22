@@ -18,7 +18,7 @@ let hypothesis = [];
 let axioms = [];
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  fetch('/files')
+  fetch('http://localhost:5000/files')
   .then(response => response.json())
   .then(files => {
     files.forEach(file => {
