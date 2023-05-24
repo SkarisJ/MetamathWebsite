@@ -40,6 +40,7 @@ function readTextFile (file) {
     if (rawFile.readyState === 4) {
       if (rawFile.status === 200 || rawFile.status == 0) {
         var lines = rawFile.responseText.split ('\n');
+        
         const numberedLines = lines.filter (lines => lines.match (/^\s*\d+/));
         numberedLines.forEach (line => {
           const oneLine = line.split (' ');
@@ -48,10 +49,13 @@ function readTextFile (file) {
             dependencies.push (
               line
                 .substring (2, 14)
-                .replace ('wi', '')
-                .replace ('m', '')
-                .replace ('a2', '')
                 .replace ('a1', '')
+                .replace ('a2', '')
+                .replace ('a3', '')
+                .replace ('a4', '')
+                .replace ('a5', '')
+                .replace ('a6', '')
+                .replace(/[a-zA-Z]/g,'')
                 .trim ()
             );
           } else {
@@ -60,7 +64,7 @@ function readTextFile (file) {
           
           expressions.push (line.substring (23, line.length).replace('-',''));
           oneLine.forEach (element => {
-            if (!isNaN (element) && element != '') {
+            if (!isNaN (element) && element != '' && element != 0) {
               numbers.push (element);
             }
           });
@@ -70,6 +74,7 @@ function readTextFile (file) {
   };
   rawFile.send (null);
   if (expressions.length > 0) {
+    //console.log(numbers)
     readOriginalFile (file.replace('.log','.mm'));
     draw ();
   }
@@ -262,6 +267,7 @@ function drawGraph () {
       marginTop: 80,
       marginLeft: 90,
       backgroundColor: 'transparent',
+      zoomType: 'x',
     },
     title: {
       text: 'Grafinis įrodymas',
