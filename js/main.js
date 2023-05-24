@@ -280,7 +280,6 @@ function drawGraph () {
       marginTop: 80,
       marginLeft: 90,
       backgroundColor: 'transparent',
-      zoomType: 'x',
     },
     title: {
       text: 'Grafinis įrodymas',
