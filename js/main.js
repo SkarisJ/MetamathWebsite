@@ -33,6 +33,19 @@ function containsNumber (str) {
   return /^\s*\d+/.test (str);
 }
 
+function extractText(inputString) {
+  const regex = /\$(\w+)\b/;
+  const match = inputString.match(regex);
+  
+  if (match) {
+    const delimiter = match[0];
+    const startIndex = inputString.indexOf(delimiter) + delimiter.length;
+    return inputString.slice(startIndex).trim();
+  }
+
+  return ''; // Return null if no match found
+}
+
 function readTextFile (file) {
   var rawFile = new XMLHttpRequest ();
   rawFile.open ('GET', file, false);
@@ -62,7 +75,7 @@ function readTextFile (file) {
             dependencies.push ('');
           }
           
-          expressions.push (line.substring (23, line.length).replace('-',''));
+          expressions.push (extractText(line));
           oneLine.forEach (element => {
             if (!isNaN (element) && element != '' && element != 0) {
               numbers.push (element);
