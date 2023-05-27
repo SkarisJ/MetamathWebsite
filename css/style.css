@@ -556,7 +556,63 @@ input[type="submit"]:hover {
     color: #333333;
 }
 
-@media (max-width: 1025px){
+/* PHONE */
+@media screen and (max-width: 767px) {
+
+    #proveDive {
+        margin-top: 60px;
+        display: block;
+    }
+
+    #chart {
+        width: 110%;
+        height: 65%;
+        position: relative;
+        left: 0;
+    }
+
+    #valCompile{
+        display: block;
+    }
+
+    #chart2 {
+        width: 110%;
+        height: 65%;
+        position: relative;
+        left: 0;
+    }
+
+    #tryOut {
+        display: block;
+    }
+
+    #file {
+        position: relative;
+        margin-top: 20px;
+        width: 80%;
+        height: auto;
+        left: 0px;
+        border: solid 5px #0076a8;
+        overflow-y: auto;
+    }
+
+    #popup-button2 {
+        padding: 10px 20px;
+        background-color: #0076a8;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 30px;
+    }
+
+    #container{
+        margin-top: 200px;
+    }
+}
+
+/* TABLET */
+@media screen and (max-width: 1023px) and (min-width: 767px){
 
     #proveDive {
         margin-top: 60px;
