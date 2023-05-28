@@ -17,9 +17,9 @@ pip install pyodide
 ```
 
 # Žingsniai įrankio naudojimui: 
-1. Atsisiųsti and išarchyvuoti **MetamathWebsite.rar**;
+1. Atsisiųsti ir išarchyvuoti **MetamathWebsite.rar**;
 2. Paleisti **python/compilerAPI.py** programą;
 ```
 python3 ./python/compilerAPI.py
 ```
-4. Atidaryti index.html failą;
+4. Atidaryti index.html failą.
