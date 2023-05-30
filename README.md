@@ -1,7 +1,7 @@
 # MetamathWebsite
 
 # Reikalavimai
-1. Įdiegta [Python](https://www.python.org/downloads/) sistema, komandinės eilutės užklausoms leisti. Užklausas būtina leisti naudojantis python3 komandą. Jei veikia tik python komandą, paprasčiausias būdas yra pervadinti python.exe failą į python3.exe python direktorijoje;
+1. Įdiegta [Python](https://www.python.org/downloads/) sistema, komandinės eilutės užklausoms leisti. Užklausas būtina leisti naudojantis python3 komandą. Jei veikia tik python komandą, paprasčiausias būdas yra pervadinti python.exe failą į python3.exe python direktorijoje (naudojant pip komandą, exe failas turi būt pavadintas python.exe);
 2. Flask, flask_cors, js, pyodide bibliotekos:
 ```
 pip install flask
