@@ -35,6 +35,7 @@ myForm.addEventListener ('submit', event => {
 
 function clearData () {
   sessionStorage.clear ();
+  counter = 0;
   alert ('Visa informacija ištrinta');
   paragraphDiv.innerHTML = '';
 }
